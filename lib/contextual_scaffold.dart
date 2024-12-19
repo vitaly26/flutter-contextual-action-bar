@@ -6,7 +6,7 @@ class ContextualScaffold<T> extends StatelessWidget {
   final bool extendBodyBehindAppBar;
 
   final PreferredSizeWidget? appBar;
-  final ContextualAppBar<T> contextualAppBar;
+  final ContextualAppBar<T> Function(BuildContext context) contextualAppBarBuilder;
 
   final Widget? body;
 
@@ -39,7 +39,7 @@ class ContextualScaffold<T> extends StatelessWidget {
   const ContextualScaffold({
     Key? key,
     this.appBar,
-    required this.contextualAppBar,
+    required this.contextualAppBarBuilder,
     this.body,
     this.floatingActionButton,
     this.floatingActionButtonLocation,
@@ -95,7 +95,7 @@ class ContextualScaffold<T> extends StatelessWidget {
                 top: 0,
                 right: 0,
                 left: 0,
-                child: contextualAppBar,
+                child: contextualAppBarBuilder(context),
               ),
           ],
         );
